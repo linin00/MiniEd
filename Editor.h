@@ -1,5 +1,6 @@
 #include <string>
 #include "Buffer.h"
+#include <cmath>
 
 class Editor {
 private:
