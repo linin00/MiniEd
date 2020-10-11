@@ -118,8 +118,16 @@ void Editor::dispatchCmd(const string &cmd)
         cmdInsert();
         return;
     }
-    if (cmd[0] == 'w' && cmd[1] == ' ') {
+    if (cmd[0] == 'w') {
         // TODO: call cmdWrite with proper arguments
+        if (cmd.size() < 3) {
+            cout <<"? Filename not specified" << endl;
+            return;
+        }
+        if (cmd[1] != ' ') {
+            cout <<"? Filename not specified" << endl;
+            return;
+        }
         string filename = cmd.substr(2);
         /* cout << filename; */
         cmdWrite(filename);
@@ -139,13 +147,17 @@ void Editor::dispatchCmd(const string &cmd)
     ss >> comma >> end >> type;
     if (ss.good()) {/* cout<<123; */
         if (type == 'n') {
-            if (start < 1 || end >buffer->LineNum || end < start)
+            if (end < start)
                 throw r_error(0);
+            if (start < 1 || end >buffer->LineNum)
+                throw out_of_r();
             cmdNumber(start, end);
             return;
         } else if (type == 'd') {
-            if (start < 1 || end >buffer->LineNum || end < start)
+            if (end < start)
                 throw r_error(1);
+            if (start < 1 || end >buffer->LineNum)
+                throw out_of_r();
             cmdDelete(start, end);
             return;
         }
@@ -154,13 +166,17 @@ void Editor::dispatchCmd(const string &cmd)
     ss2 >> start >> comma >> comma2 >>type;
     if (ss2.good()) {/* cout<<123; */
         if (type == 'n' && comma2 == '$') {
-            if (start < 1)
+            if (start > buffer->LineNum)
                 throw r_error(0);
+            if (start < 1)
+                throw out_of_r();
             cmdNumber(start, buffer->LineNum);
             return;
         } else if (type == 'd' && comma2 == '$') {
+            if (start > buffer->LineNum)
+                throw r_error(1);
             if (start < 1)
-                throw r_error(0);
+                throw out_of_r();
             cmdDelete(start, buffer->LineNum);
             return;
         }

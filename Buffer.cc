@@ -30,7 +30,7 @@ void Buffer::writeToFile(const string &filename) const {
         tmp = tmp->back;
     }
     File.close();
-    std::cout << ":" << Bytes + 2*LineNum << " byte(s) written\n";
+    std::cout << ":" << Bytes + LineNum << " byte(s) written\n";
 }
 
 void Buffer::showLines(int from, int to) {
