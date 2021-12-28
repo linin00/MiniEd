@@ -16,30 +16,37 @@ Ed有两种模式，刚运行时Ed处于命令模式（command mode）。此时�
 > - `a`
 >
 > Appends text to the buffer after the current address line. If the current address is zero, the entered text is placed at the beginning of the buffer. Text is entered in input mode. The current address is set to the address of the last line entered or, if there were none, the current address is not changed.  
+在当前地址行之后将文本追加到缓冲区。 如果当前地址为零，则将输入的文本放在缓冲区的开头。 在输入模式下输入文字。 当前地址设置为最后输入的行的地址，如果没有，则不更改当前地址。
 >
 > - `?,?d`
 >
 > Deletes the addressed lines from the buffer. The current address is set to the new address of the line after the last line deleted; if the lines deleted were originally at the end of the buffer, the current address is set to the address of the new last line; if no lines remain in the buffer, the current address is set to zero.  
+从缓冲区中删除寻址的行。 在删除最后一行后，当前地址设置为该行的新地址； 如果删除的行原本在缓冲区的末尾，则当前地址设置为新的最后一行的地址； 如果缓冲区中没有剩余行，则将当前地址设置为零。
 >
 > - `i`
 >
-> Inserts text in the buffer before the current addressed line. If the current address is zero, the entered text is placed at the beginning of the buffer. Text is entered in input mode. The current address is set to the address of the last line entered or, if there were none, the current address is not changed.  
+> Inserts text in the buffer before the current addressed line. If the current address is zero, the entered text is placed at the beginning of the buffer. Text is entered in input mode. The current address is set to the address of the last line entered or, if there were none, the current address is not changed. 
+在当前寻址行之前的缓冲区中插入文本。 如果当前地址为零，则将输入的文本放在缓冲区的开头。 在输入模式下输入文字。 当前地址设置为最后输入的行的地址，如果没有，则不更改当前地址。 
 >
 > - `?,?n`
 >
 > Number command. Prints the addressed lines, preceding each line by its line number and a \<tab> (`'\t'`). The current address is set to the address of the last line printed. Specially, `1,$n` prints all lines in the buffer.
+数字命令。 打印寻址的行，在每行之前加上其行号和<tab>(`'\t'`)。 当前地址设置为打印的最后一行的地址。 特别地，1，$ n打印缓冲区中的所有行。
 >
 > - `Q`
 >
-> Quits ed unconditionally. Unwritten changes are discarded.  
+> Quits ed unconditionally. Unwritten changes are discarded.
+无条件退出。 未写入的更改将被丢弃。  
 >
 > - `w file`
 >
 > Writes all lines to file and prints the number of bytes written to the file. Print an error if no filename is specified. The current address is unchanged.
+将所有行写入文件，并打印写入文件的字节数。 如果未指定文件名，则打印错误。 当前地址不变。
 >
 > - `?`
 >
 > Null command. An address alone prints the addressed line. The current address is set to the address of the printed line.
+空命令。 一个地址单独打印寻址的行。 当前地址设置为打印行的地址。
 >
 > 
 >
